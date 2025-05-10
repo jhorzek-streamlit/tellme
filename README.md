@@ -1,15 +1,28 @@
 # tellme
 
-Discover your surroundings with short podcasts based on Wikipedia articles!
+> Rediscover your city - one podcasts at a time.
 
-tellme is a simple podcast AI that is heavily inspired by [podcastfy](https://github.com/souzatharsis/podcastfy). The objective is to search nearby sight seeing spots and generate short podcasts for those spots. The current version is a prototype, but once built into a proper app, this would allow you to discover your city while you are going for a walk.
+----
 
-There are currently two ways to setting everyting up. If you are only interested in running the app, you can use
-the docker image at `ghcr.io/jhorzek/tellme:latest`. If you want to contribute to the development of the app, we recommend using the devcontainer with VSCode.
+tellme lets you effortlessly discover your surroundings by turning Wikipedia articles of attractions close to your location into engaging podcasts.
+
+![](misc/tellme-screenshot-example.png)
+![](misc/Schloss%20Schönhausen.mp4)
+
+> Warning: All podcasts are AI generated and can/will be inaccurate.
+
+tellme is heavily inspired by [podcastfy](https://github.com/souzatharsis/podcastfy) and builds on many great packages, such as [chatlas](https://posit-dev.github.io/chatlas/), [streamlit](https://streamlit.io), and [geopy](https://geopy.readthedocs.io/en/stable/).
+
+## Using tellme
+
+There are different ways to set up tellme. Because tellme uses LLMs to create the podcasts, your will need API keys for those. There are currently two supported setups:
+
+1. Free with Gemini: Google provides a free API key for it's LLM Gemini. To create an API key, got to https://aistudio.google.com/apikey. When using Gemini, the podcast voices are created with edge tts, which is also free to use.
+2. Non-free OpenAI: When using OpenAI, both the podcast script and the voices are created with OpenAI. Generally, the voices are a bit better than those of edge tts. To use OpenAI, you will have to generate an API key: https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key
 
 ## Using docker to run the app
 
-First, download and install docker. 
+If you are only interested in running tellme and exploring your surroundings, you can do so with docker. First, download and install docker. 
 
 When on linux or windows, run:
 
@@ -23,7 +36,7 @@ On mac-os run:
 docker run --platform linux/amd64 -p 8501:8501 ghcr.io/jhorzek/tellme:latest
 ```
 
-Go to the browser window indicated in the terminal.
+Go to the browser window indicated in the terminal and start exploring.
 
 ## Contributing to tellme
 
@@ -44,11 +57,3 @@ After a few minutes, you should be ready to code! You can run the application wi
 ```
 poetry run streamlit run --server.port=8501 --server.address=0.0.0.0 tellme/User_interface/streamlit_UI.py
 ```
-
-## API Keys
-
-To use gemini to create podcast scripts, you will need an API key. Google provides a free key that can be used for a small number of requests. Go to https://aistudio.google.com/apikey
-and create a new API key. Save this API key and supply it to the app to create a podcast.
-
-So far, we are using edge text to speech. The resulting podcasts sound terrifying, but it's free of charge and therefore a nice tool for
-prototyping.
